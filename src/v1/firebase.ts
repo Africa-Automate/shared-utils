@@ -2,7 +2,10 @@ import * as admin from "firebase-admin";
 
 // ✅ Ensure Firebase is initialized only once
 if (admin.apps.length === 0) {
-  admin.initializeApp();
+  admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+    databaseURL: process.env.FIREBASE_DATABASE_URL, // 👈 this is key for Realtime DB
+  });
 }
 
 // ✅ Export common Firebase services
