@@ -16,7 +16,7 @@ firebase-debug.*.log*
 
 #node modules
 node_modules/
-dist/
+# dist/
 # Firebase config
 
 # Uncomment this if you'd like others to create their own Firebase project.
