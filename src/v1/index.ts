@@ -21,3 +21,4 @@ export * from "./generate_session_id";
 export * from "./random_unique_number";
 export * from "./extract_match";
 export * from "./generate_csv_buffer";
+export * from "./dates";
