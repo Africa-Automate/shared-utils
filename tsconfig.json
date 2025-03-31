@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
