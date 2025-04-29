@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { db } from "./firebase";
+import { getDateAndTime } from "./get_date_and_time";
 
 /**
  * Sends a push notification to a customer's verified devices.
@@ -14,7 +15,8 @@ import { db } from "./firebase";
 export async function sendNotifications(
   UCN: string,
   title: string,
-  message: string
+  message: string,
+  uid?: string
 ): Promise<void> {
   // Step 1: Retrieve the customer document from Firestore
   const customerRef = db.collection("Customers").doc(UCN);
@@ -33,6 +35,7 @@ export async function sendNotifications(
     if (deviceInfo["fcmToken"] == "NO-TOKEN") {
       return;
     }
+
     if (deviceInfo["verified"]) {
       console.log("Message: " + message);
       try {
@@ -43,6 +46,20 @@ export async function sendNotifications(
           },
           token: deviceInfo["fcmToken"],
         });
+
+        if (uid) {
+          const now = getDateAndTime();
+          const messageData = {
+            date: now.date,
+            time: now.time,
+            timestamp: now.timestamp,
+            message: message,
+            message_owner: uid,
+            source_customer: UCN,
+          };
+
+          await db.collection("InAppMessages").doc().set(messageData);
+        }
       } catch (e) {
         return;
       }
