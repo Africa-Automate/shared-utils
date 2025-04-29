@@ -22,3 +22,4 @@ export * from "./random_unique_number";
 export * from "./extract_match";
 export * from "./generate_csv_buffer";
 export * from "./dates";
+export * from "./activity_type_codes";
