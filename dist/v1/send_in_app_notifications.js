@@ -46,6 +46,7 @@ exports.sendNotifications = sendNotifications;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const firebase_1 = require("./firebase");
+const get_date_and_time_1 = require("./get_date_and_time");
 /**
  * Sends a push notification to a customer's verified devices.
  *
@@ -55,7 +56,7 @@ const firebase_1 = require("./firebase");
  * @returns {Promise<void>} Resolves when notifications are successfully sent.
  * @throws {functions.https.HttpsError} If the customer document is not found.
  */
-function sendNotifications(UCN, title, message) {
+function sendNotifications(UCN, title, message, uid) {
     return __awaiter(this, void 0, void 0, function* () {
         // Step 1: Retrieve the customer document from Firestore
         const customerRef = firebase_1.db.collection("Customers").doc(UCN);
@@ -79,6 +80,18 @@ function sendNotifications(UCN, title, message) {
                         },
                         token: deviceInfo["fcmToken"],
                     });
+                    if (uid) {
+                        const now = (0, get_date_and_time_1.getDateAndTime)();
+                        const messageData = {
+                            date: now.date,
+                            time: now.time,
+                            timestamp: now.timestamp,
+                            message: message,
+                            message_owner: uid,
+                            source_customer: UCN,
+                        };
+                        yield firebase_1.db.collection("InAppMessages").doc().set(messageData);
+                    }
                 }
                 catch (e) {
                     return;

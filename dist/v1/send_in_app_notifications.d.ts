@@ -7,4 +7,4 @@
  * @returns {Promise<void>} Resolves when notifications are successfully sent.
  * @throws {functions.https.HttpsError} If the customer document is not found.
  */
-export declare function sendNotifications(UCN: string, title: string, message: string): Promise<void>;
+export declare function sendNotifications(UCN: string, title: string, message: string, uid?: string): Promise<void>;
