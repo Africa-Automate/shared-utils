@@ -33,14 +33,15 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.messaging = exports.storage = exports.rtdb = exports.auth = exports.db = void 0;
+exports.HttpsError = exports.onCall = exports.functions_v2 = exports.functions = exports.messaging = exports.storage = exports.rtdb = exports.auth = exports.db = void 0;
 const admin = __importStar(require("firebase-admin"));
+const functions = __importStar(require("firebase-functions"));
+exports.functions = functions;
+const functions_v2 = __importStar(require("firebase-functions/v2"));
+exports.functions_v2 = functions_v2;
 // ✅ Ensure Firebase is initialized only once
 if (admin.apps.length === 0) {
-    admin.initializeApp({
-        credential: admin.credential.applicationDefault(),
-        databaseURL: process.env.FIREBASE_DATABASE_URL, // 👈 this is key for Realtime DB
-    });
+    admin.initializeApp();
 }
 // ✅ Export common Firebase services
 exports.db = admin.firestore();
@@ -48,3 +49,8 @@ exports.auth = admin.auth();
 exports.rtdb = admin.database();
 exports.storage = admin.storage();
 exports.messaging = admin.messaging();
+// ✅ Export common Firebase services
+const onCall = functions_v2.https.onCall;
+exports.onCall = onCall;
+const HttpsError = functions_v2.https.HttpsError;
+exports.HttpsError = HttpsError;
