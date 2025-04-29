@@ -39,3 +39,4 @@ __exportStar(require("./extract_match"), exports);
 __exportStar(require("./generate_csv_buffer"), exports);
 __exportStar(require("./dates"), exports);
 __exportStar(require("./activity_type_codes"), exports);
+__exportStar(require("./get_user_record"), exports);
