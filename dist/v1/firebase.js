@@ -41,7 +41,9 @@ const functions_v2 = __importStar(require("firebase-functions/v2"));
 exports.functions_v2 = functions_v2;
 // ✅ Ensure Firebase is initialized only once
 if (admin.apps.length === 0) {
-    admin.initializeApp();
+    admin.initializeApp(Object.assign({}, (process.env.FIREBASE_DATABASE_URL
+        ? { databaseURL: process.env.FIREBASE_DATABASE_URL }
+        : {})));
 }
 // ✅ Export common Firebase services
 exports.db = admin.firestore();
