@@ -24,3 +24,4 @@ export * from "./generate_csv_buffer";
 export * from "./dates";
 export * from "./activity_type_codes";
 export * from "./get_user_record";
+export * from "./get_system_status";
