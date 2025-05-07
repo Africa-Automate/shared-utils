@@ -68,6 +68,7 @@ import { v4 as uuidv4 } from "uuid";
  * @param {Array<{ base64: string; mimeType: string }>} files - The files to upload.
  * @param {string} path - The storage directory where files should be saved.
  * @param {string} name - A unique identifier for file naming.
+ * * @param {string} bucketName - Optional firebase storage bucket name - defaults to "informal-traders-africa"
  * @returns {Promise<string[]>} An array of public URLs for the uploaded files.
  * @throws {Error} If the input is invalid or an upload error occurs.
  */
@@ -76,7 +77,7 @@ export async function saveFiles(
   files: { base64: string; mimeType: string }[],
   path: string,
   name: string,
-  bucketName = "informal-traders-africa" // 👈 default
+  bucketName: string = "informal-traders-africa"
 ): Promise<string[]> {
   if (!files || !Array.isArray(files) || files.length === 0) {
     throw new Error("Invalid input. No files provided.");
