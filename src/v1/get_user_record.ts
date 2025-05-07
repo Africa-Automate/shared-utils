@@ -9,7 +9,7 @@ import { auth } from "./firebase";
  */
 export async function getUserIdAndClaims(
   ucn: string
-): Promise<{ uid: string; claims: any } | null> {
+): Promise<{ uid: any; claims: any } | null> {
   const email = `${ucn}@informaltraders.tech`;
 
   try {
@@ -21,7 +21,7 @@ export async function getUserIdAndClaims(
   } catch (err: any) {
     if (err.code === "auth/user-not-found") {
       console.warn(`⚠️ No Firebase user found for UCN: ${ucn}`);
-      return null;
+      return { uid: undefined, claims: {} };
     } else {
       console.error(`❌ Unexpected error fetching user for UCN ${ucn}:`, err);
       throw err;

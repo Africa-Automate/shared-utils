@@ -6,6 +6,6 @@
  * @returns {Promise<{ uid: string, claims: any } | null>}
  */
 export declare function getUserIdAndClaims(ucn: string): Promise<{
-    uid: string;
+    uid: any;
     claims: any;
 } | null>;
