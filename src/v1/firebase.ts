@@ -18,8 +18,8 @@ if (admin.apps.length === 0) {
 export const db = admin.firestore();
 export const auth = admin.auth();
 export const rtdb = admin.database();
-export const storage = getStorage(); // ✅ FIXED
-export const messaging = getMessaging(); // ✅ FIXED
+export const storage = getStorage();
+export const messaging = getMessaging();
 
 const onCall = functions_v2.https.onCall;
 const HttpsError = functions_v2.https.HttpsError;

@@ -51,8 +51,8 @@ if (admin.apps.length === 0) {
 exports.db = admin.firestore();
 exports.auth = admin.auth();
 exports.rtdb = admin.database();
-exports.storage = (0, storage_1.getStorage)(); // ✅ FIXED
-exports.messaging = (0, messaging_1.getMessaging)(); // ✅ FIXED
+exports.storage = (0, storage_1.getStorage)();
+exports.messaging = (0, messaging_1.getMessaging)();
 const onCall = functions_v2.https.onCall;
 exports.onCall = onCall;
 const HttpsError = functions_v2.https.HttpsError;
