@@ -71,4 +71,4 @@
 export declare function saveFiles(files: {
     base64: string;
     mimeType: string;
-}[], path: string, name: string): Promise<string[]>;
+}[], path: string, name: string, bucketName?: string): Promise<string[]>;

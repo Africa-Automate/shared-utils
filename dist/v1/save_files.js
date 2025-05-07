@@ -82,8 +82,9 @@ const uuid_1 = require("uuid");
  * @returns {Promise<string[]>} An array of public URLs for the uploaded files.
  * @throws {Error} If the input is invalid or an upload error occurs.
  */
-function saveFiles(files, path, name) {
-    return __awaiter(this, void 0, void 0, function* () {
+function saveFiles(files_1, path_1, name_1) {
+    return __awaiter(this, arguments, void 0, function* (files, path, name, bucketName = "informal-traders-africa" // 👈 default
+    ) {
         if (!files || !Array.isArray(files) || files.length === 0) {
             throw new Error("Invalid input. No files provided.");
         }
@@ -99,9 +100,7 @@ function saveFiles(files, path, name) {
             const uniqueFileName = `${name}_${Date.now()}_${(0, uuid_1.v4)()}.${fileExtension}`;
             const filePath = `${path}/${uniqueFileName}`;
             // Define the file in Firebase Storage
-            const storageFile = firebase_1.storage
-                .bucket("informal-traders-africa")
-                .file(filePath);
+            const storageFile = firebase_1.storage.bucket(bucketName).file(filePath);
             // Upload the file
             yield storageFile.save(fileBuffer, {
                 contentType: file.mimeType,

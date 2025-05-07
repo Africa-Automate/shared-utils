@@ -75,7 +75,8 @@ import { v4 as uuidv4 } from "uuid";
 export async function saveFiles(
   files: { base64: string; mimeType: string }[],
   path: string,
-  name: string
+  name: string,
+  bucketName = "informal-traders-africa" // 👈 default
 ): Promise<string[]> {
   if (!files || !Array.isArray(files) || files.length === 0) {
     throw new Error("Invalid input. No files provided.");
@@ -94,9 +95,7 @@ export async function saveFiles(
     const uniqueFileName = `${name}_${Date.now()}_${uuidv4()}.${fileExtension}`;
     const filePath = `${path}/${uniqueFileName}`;
     // Define the file in Firebase Storage
-    const storageFile = storage
-      .bucket("informal-traders-africa")
-      .file(filePath);
+    const storageFile = storage.bucket(bucketName).file(filePath);
 
     // Upload the file
     await storageFile.save(fileBuffer, {
