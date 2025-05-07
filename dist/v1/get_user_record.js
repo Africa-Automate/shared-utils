@@ -13,17 +13,30 @@ exports.getUserIdAndClaims = getUserIdAndClaims;
 const firebase_1 = require("./firebase");
 /**
  * Retrieves a Firebase Auth user's UID and custom claims using their UCN.
+ * Returns `null` if the user is not found.
  *
  * @param {string} ucn - The user's Unique Customer Number.
- * @returns {Promise<{ uid: string, claims: any }>} - Object with uid and custom claims.
- * @throws Will throw if user is not found or another error occurs.
+ * @returns {Promise<{ uid: string, claims: any } | null>}
  */
 function getUserIdAndClaims(ucn) {
     return __awaiter(this, void 0, void 0, function* () {
-        const email = `${ucn}@informaltraders.techs`;
-        const userRecord = yield firebase_1.auth.getUserByEmail(email);
-        const uid = userRecord.uid;
-        const claims = userRecord.customClaims || {};
-        return { uid, claims };
+        const email = `${ucn}@informaltraders.tech`;
+        try {
+            const userRecord = yield firebase_1.auth.getUserByEmail(email);
+            return {
+                uid: userRecord.uid,
+                claims: userRecord.customClaims || {},
+            };
+        }
+        catch (err) {
+            if (err.code === "auth/user-not-found") {
+                console.warn(`⚠️ No Firebase user found for UCN: ${ucn}`);
+                return null;
+            }
+            else {
+                console.error(`❌ Unexpected error fetching user for UCN ${ucn}:`, err);
+                throw err;
+            }
+        }
     });
 }
