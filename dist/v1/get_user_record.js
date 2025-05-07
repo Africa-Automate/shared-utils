@@ -30,7 +30,7 @@ function getUserIdAndClaims(ucn) {
         }
         catch (err) {
             if (err.code === "auth/user-not-found") {
-                console.warn(`⚠️ No Firebase user found for UCN: ${ucn}`);
+                console.warn(`⚠️ No Firebase user found for UCN: ${ucn}.`);
             }
             else {
                 console.error(`❌ Unexpected error fetching user for UCN ${ucn}:`, err);
