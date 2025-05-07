@@ -8,4 +8,4 @@
 export declare function getUserIdAndClaims(ucn: string): Promise<{
     uid: any;
     claims: any;
-} | null>;
+}>;

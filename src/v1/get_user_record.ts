@@ -9,7 +9,7 @@ import { auth } from "./firebase";
  */
 export async function getUserIdAndClaims(
   ucn: string
-): Promise<{ uid: any; claims: any } | null> {
+): Promise<{ uid: any; claims: any }> {
   const email = `${ucn}@informaltraders.tech`;
 
   try {
