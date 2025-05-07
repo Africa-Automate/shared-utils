@@ -13,10 +13,10 @@ exports.getUserIdAndClaims = getUserIdAndClaims;
 const firebase_1 = require("./firebase");
 /**
  * Retrieves a Firebase Auth user's UID and custom claims using their UCN.
- * Returns `null` if the user is not found.
+ * Returns `{ uid: undefined, claims: {} }` if the user is not found.
  *
  * @param {string} ucn - The user's Unique Customer Number.
- * @returns {Promise<{ uid: string, claims: any } | null>}
+ * @returns {Promise<{ uid: string, claims: any }>}
  */
 function getUserIdAndClaims(ucn) {
     return __awaiter(this, void 0, void 0, function* () {

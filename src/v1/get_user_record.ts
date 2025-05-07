@@ -2,10 +2,10 @@ import { auth } from "./firebase";
 
 /**
  * Retrieves a Firebase Auth user's UID and custom claims using their UCN.
- * Returns `null` if the user is not found.
+ * Returns `{ uid: undefined, claims: {} }` if the user is not found.
  *
  * @param {string} ucn - The user's Unique Customer Number.
- * @returns {Promise<{ uid: string, claims: any } | null>}
+ * @returns {Promise<{ uid: string, claims: any }>}
  */
 export async function getUserIdAndClaims(
   ucn: string
