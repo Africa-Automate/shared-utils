@@ -21,10 +21,10 @@ export async function getUserIdAndClaims(
   } catch (err: any) {
     if (err.code === "auth/user-not-found") {
       console.warn(`⚠️ No Firebase user found for UCN: ${ucn}`);
-      return { uid: undefined, claims: {} };
     } else {
       console.error(`❌ Unexpected error fetching user for UCN ${ucn}:`, err);
       throw err;
     }
+    return { uid: undefined, claims: {} };
   }
 }
