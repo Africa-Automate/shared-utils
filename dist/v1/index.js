@@ -42,3 +42,4 @@ __exportStar(require("./activity_type_codes"), exports);
 __exportStar(require("./get_user_record"), exports);
 __exportStar(require("./get_system_status"), exports);
 __exportStar(require("./log_and_rethrow_error"), exports);
+__exportStar(require("./log_customer_change"), exports);
